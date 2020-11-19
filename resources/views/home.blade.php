@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-    <div class="bg-blue-50 h-full">
+    <div class="bg-blue-50 h-max min-h-full">
         @include('layouts.navbar')
         <div class="p-4">
             <h1 class="text-2xl text-gray-400 font-normal">Hello,</h1>
@@ -14,6 +14,16 @@
                 @include('resources/priorityTask', [
                     'priority' => 0
                 ])
+            </div>
+        </div>
+        <div class="p-4">
+            <p class="text-lg text-gray-400 font-semibold flex items-center justify-start">
+                My projects <i class="fas fa-plus-circle ml-2 text-3xl"></i>
+            </p>
+            <div class="mt-4 w-full">
+                @for ($i = 0; $i < 5; $i++)
+                    @include('resources/taskCard')
+                @endfor
             </div>
         </div>
     </div>
