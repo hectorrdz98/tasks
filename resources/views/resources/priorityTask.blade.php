@@ -6,7 +6,7 @@
                 <div class="flex w-max">
                     <div class="h-16 w-16 flex justify-center items-center 
                         bg-black {{ $priority ? 'bg-opacity-25' : 'bg-opacity-10'}} rounded-xl mr-4">
-                        <i class="fas fa-plane-departure {{ $priority ? 'text-blue-300' : 'text-gray-800' }}"></i>
+                        <i class="text-xl fas fa-plane-departure {{ $priority ? 'text-blue-300' : 'text-gray-800' }}"></i>
                     </div>
                     <div class="h-16 w-16 flex justify-center items-center 
                         bg-black {{ $priority ? 'bg-opacity-25' : 'bg-opacity-10'}} rounded-xl mr-4">

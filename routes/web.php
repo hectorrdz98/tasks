@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,4 +15,5 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', [HomeController::class, 'home']);
+Route::get('/', [HomeController::class, 'home'])->name('home');
+Route::get('project/{id}', [ProjectController::class, 'home'])->name('project.home');

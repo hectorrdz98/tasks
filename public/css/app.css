@@ -6,6 +6,10 @@ html {
     font-family: 'Roboto', sans-serif;
 }
 
+nav {
+    z-index: 100;
+}
+
 #sideMenuContainer {
     z-index: 999;
     transform: translateX(-100%);
