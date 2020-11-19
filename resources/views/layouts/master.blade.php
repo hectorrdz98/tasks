@@ -12,7 +12,6 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
     <script src="https://kit.fontawesome.com/6b259f39e8.js" crossorigin="anonymous"></script>
 
     <!-- Styles -->
@@ -41,5 +40,6 @@ $.ajaxSetup({
     }
 });
 </script>
+<script src="{{ asset('js/app.js') }}"></script>
 @yield('scripts')
 </html>

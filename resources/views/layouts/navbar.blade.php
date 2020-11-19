@@ -5,7 +5,7 @@
             <span class="text-xl text-gray-800 font-bold ml-2">Let's </span>
             <span class="text-xl text-gray-800 font-semibold ml-1">Task!</span>
         </h1>
-        <div class="flex flex-col items-center justify-center w-full">
+        <div class="flex flex-col items-center justify-center w-full mt-4">
             <div class="flex justify-start items-center w-full px-4 py-2">
                 <i class="fas fa-home text-base text-gray-600"></i>
                 <p class="text-base text-gray-600 ml-4 font-semibold">Home</p>
