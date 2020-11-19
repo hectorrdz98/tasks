@@ -2,16 +2,23 @@
 @section('content')
     @include('layouts.navbar')
     <div class="bg-blue-500 h-max min-h-full pt-14">
-        <div class="p-4 h-40 flex flex-col justify-center items-start">
-            <h1 class="text-3xl text-white font-semibold">
-                Taller de BD
-            </h1>
-            <div class="flex justify-start items-center">
-                <div class="bg-red-600 w-5 h-5 rounded"></div>
-                <p class="text-white ml-2">2 / 40</p>
+        <div class="p-4 h-40 flex justify-center items-center">
+            <div class="w-2/3 h-full flex flex-col justify-center items-start">
+                <h1 class="modal-open text-3xl text-white font-semibold overflow-y-auto"
+                    modal="modalChangeProjectTitle">
+                    Taller de BD
+                </h1>
+                <div class="flex justify-start items-center">
+                    <div class="modal-open bg-red-600 w-5 h-5 rounded"
+                        modal="modalChangeProjectColor"></div>
+                    <p class="text-white ml-2">2 / 40</p>
+                </div>
+            </div>
+            <div class="w-1/3 flex justify-end items-center text-white text-3xl">
+                <i class="fas fa-file mx-4"></i>
             </div>
         </div>
-        <div class="p-4 pb-0 bg-blue-50 rounded-t-3xl shadow-2xl">
+        <div class="p-4 pb-0 bg-white rounded-t-3xl shadow-2xl">
             <div id="panel-to-do">
                 <p class="text-lg h-10 text-gray-800 font-semibold flex items-center justify-start">
                     To Do 
@@ -79,6 +86,12 @@
             </div>
         </div>
     </div>
+    @include('modals/changeProjectColor', [
+        'id' => 'modalChangeProjectColor'
+    ])
+    @include('modals/changeProjectTitle', [
+        'id' => 'modalChangeProjectTitle'
+    ])
 @endsection
 @section('scripts')
 <script>
