@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +18,4 @@ use App\Http\Controllers\ProjectController;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('project/{id}', [ProjectController::class, 'home'])->name('project.home');
+Route::get('project/{id}/{taskId}', [TaskController::class, 'home'])->name('task.home');

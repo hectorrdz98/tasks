@@ -13,7 +13,7 @@
                         </h3>
                         <div class="mt-2">
                             <div class="flex w-full">
-                                <input type="name" name="name" id="name" placeholder="Full Name" 
+                                <input type="name" name="name" id="name" placeholder="Title" 
                                     class="w-full mt-2 p-3 rounded-lg bg-white dark:bg-gray-800 border 
                                     border-gray-400 dark:border-gray-700 text-gray-800 
                                     focus:border-blue-500 focus:outline-none">

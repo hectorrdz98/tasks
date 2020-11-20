@@ -9,13 +9,13 @@
                     Taller de BD
                 </h1>
                 <div class="flex justify-start items-center">
-                    <div class="modal-open bg-red-600 w-5 h-5 rounded"
+                    <div id="divChangeColor" class="modal-open bg-red-600 w-5 h-5 rounded"
                         modal="modalChangeProjectColor"></div>
                     <p class="text-white ml-2">2 / 40</p>
                 </div>
             </div>
             <div class="w-1/3 flex justify-end items-center text-white text-3xl">
-                <i class="fas fa-file mx-4"></i>
+                <i class="modal-open fas fa-file mx-4" modal="modalNewTask"></i>
             </div>
         </div>
         <div class="p-4 pb-0 bg-white rounded-t-3xl shadow-2xl">
@@ -77,7 +77,7 @@
                 </div>
                 <div class="w-full p-2 flex flex-col items-center justify-center">
                     <div id="option-done" class="project-options text-gray-800 w-full flex justify-center items-center rounded">
-                        <i class="far fa-check-circle "></i>
+                        <i class="far fa-check-circle"></i>
                         <p class="text-base font-semibold ml-2">
                             Done
                         </p>
@@ -91,6 +91,9 @@
     ])
     @include('modals/changeProjectTitle', [
         'id' => 'modalChangeProjectTitle'
+    ])
+    @include('modals/newTask', [
+        'id' => 'modalNewTask'
     ])
 @endsection
 @section('scripts')
@@ -120,6 +123,11 @@
         $("#panel-to-do").slideUp();
         $("#panel-doing").slideUp();
         $("#panel-done").slideDown();
+    });
+
+    $("input[type=color]").change(function (e) { 
+        let color = e.target.value;
+        $("#divChangeColor").css("background-color", color);
     });
 </script>
 @endsection

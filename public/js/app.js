@@ -41,3 +41,14 @@ $("input[type=color]").change(function (e) {
     let color = e.target.value;
     $(".color-picker").css("background-color", color);
 });
+
+// TASK EVENTS
+
+$('.task-label-input').change(function () {
+    $(this).next().toggleClass("bg-black");
+    $(this).next().toggleClass("text-gray-800");
+    $(this).next().toggleClass("bg-opacity-10");
+    $(this).next().toggleClass("bg-blue-500");
+    $(this).next().toggleClass("text-white");
+    $(this).next().toggleClass("bg-opacity-100");
+});

@@ -33,11 +33,17 @@
     </div>
     <div id="sideMenuBlack" class="fixed bg-black w-full h-full bg-opacity-60 transition-all duration-500"></div>
     <div class="flex justify-between items-center w-full p-4">
-        <div id="sideMenuBtn" class="flex flex-col items-start justify-around w-6 h-6">
-            <div class="w-full h-1 bg-gray-800 rounded"></div>
-            <div class="w-full h-1 bg-gray-800 rounded"></div>
-            <div id="sideMenuBarSemi" class="w-1/2 h-1 bg-gray-800 rounded transition-all duration-200"></div>
-        </div>
+        @isset($return)
+            <a href="{{ $return }}" class="flex justify-center items-center w-6 h-6">
+                <i id="returnBtn" class="text-3xl fas fa-angle-left text-gray-800"></i>
+            </a>
+        @else
+            <div id="sideMenuBtn" class="flex flex-col items-start justify-around w-6 h-6">
+                <div class="w-full h-1 bg-gray-800 rounded"></div>
+                <div class="w-full h-1 bg-gray-800 rounded"></div>
+                <div id="sideMenuBarSemi" class="w-1/2 h-1 bg-gray-800 rounded transition-all duration-200"></div>
+            </div>
+        @endisset
         <div>
             <i class="text-xl fas fa-bell text-gray-400"></i>
         </div>

@@ -1,4 +1,4 @@
-<div class="w-full rounded flex justify-start items-center">
+<a href="{{ route('task.home', [1, 1]) }}" class="w-full rounded flex justify-start items-center">
     <div class="w-2/3 flex justify-start items-center">
         <div class="w-4 h-4 bg-green-600 rounded-full"></div>
         <div class="w-full flex flex-col justify-center items-start p-4">
@@ -26,4 +26,4 @@
             </div>
         </div>
     </div>
-</div>
+</a>
