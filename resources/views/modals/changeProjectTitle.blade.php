@@ -13,17 +13,17 @@
                         </h3>
                         <div class="mt-2">
                             <div class="flex w-full">
-                                <input type="name" name="name" id="name" placeholder="Title" 
+                                <input type="name" name="projectTitle" id="projectTitle" placeholder="Title" 
                                     class="w-full mt-2 p-3 rounded-lg bg-white dark:bg-gray-800 border 
                                     border-gray-400 dark:border-gray-700 text-gray-800 
-                                    focus:border-blue-500 focus:outline-none">
+                                    focus:border-blue-500 focus:outline-none" value="{{ $project->title }}">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent 
+                <button id="projectTitleBtn" type="button" class="w-full inline-flex justify-center rounded-md border border-transparent 
                     shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 
                     focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto 
                     sm:text-sm">

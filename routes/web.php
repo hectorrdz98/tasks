@@ -26,6 +26,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/', [HomeController::class, 'home'])->name('home');
     Route::post('project/create', [ProjectController::class, 'create'])->name('project.create');
     Route::get('project/{id}', [ProjectController::class, 'home'])->name('project.home');
+    Route::post('project/{id}/updateTitle', [ProjectController::class, 'updateTitle'])->name('project.updateTitle');
+    Route::post('project/{id}/updateColor', [ProjectController::class, 'updateColor'])->name('project.updateColor');
     Route::post('project/{id}/create', [TaskController::class, 'create'])->name('tasks.create');
     Route::get('project/{id}/{taskId}', [TaskController::class, 'home'])->name('task.home');
 });

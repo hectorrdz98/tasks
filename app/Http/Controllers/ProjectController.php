@@ -41,4 +41,20 @@ class ProjectController extends Controller
         
         return redirect()->route('project.home', ['id' => $project->id]);
     }
+
+    public function updateTitle($id, Request $request)
+    {
+        $project = Project::findOrFail($id);
+        $project->title = $request->title;
+        $project->update();
+        return true;
+    }
+
+    public function updateColor($id, Request $request)
+    {
+        $project = Project::findOrFail($id);
+        $project->color = $request->color;
+        $project->update();
+        return true;
+    }
 }

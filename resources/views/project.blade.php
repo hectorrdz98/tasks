@@ -4,7 +4,7 @@
     <div class="bg-blue-500 h-max min-h-full pt-14">
         <div class="p-4 h-40 flex justify-center items-center">
             <div class="w-2/3 h-full flex flex-col justify-center items-start">
-                <h1 class="modal-open text-3xl text-white font-semibold overflow-y-auto"
+                <h1 id="projectTitleDesc" class="modal-open text-3xl text-white font-semibold overflow-y-auto"
                     modal="modalChangeProjectTitle">
                     {{ $project->title }}
                 </h1>
@@ -131,9 +131,40 @@
         $("#panel-done").slideDown();
     });
 
-    $("input[type=color]").change(function (e) { 
-        let color = e.target.value;
-        $("#divChangeColor").css("background-color", color);
+    $("#projectTitleBtn").click(function () {
+        let projectTitle = $("#projectTitle").val();
+        var formData = new FormData();
+        formData.append("title", projectTitle);
+        $.ajax({
+            url: "{{ route('project.updateTitle', ['id' => $project->id]) }}",
+            type: "POST",
+            data: formData,
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function (data) {
+                $("#projectTitleDesc").text(projectTitle);
+                $(".modal").slideUp();
+            }
+        });
+    });
+
+    $("#projectColorBtn").click(function () {
+        let projectColor = $("#projectColor").val();
+        var formData = new FormData();
+        formData.append("color", projectColor);
+        $.ajax({
+            url: "{{ route('project.updateColor', ['id' => $project->id]) }}",
+            type: "POST",
+            data: formData,
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function (data) {
+                $("#divChangeColor").css("background-color", projectColor);
+                $(".modal").slideUp();
+            }
+        });
     });
 </script>
 @endsection
