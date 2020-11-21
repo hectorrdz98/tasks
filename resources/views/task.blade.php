@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('content')
     @include('layouts.navbar', [
-        'return' => route('project.home', 1)
+        'return' => route('project.home', $project->id)
     ])
     <div class="bg-blue-500 pt-14 rounded-b-3xl shadow-2xl">
         <div class="p-4 pt-10 flex justify-center items-center">
@@ -25,15 +25,28 @@
     <div class="mt-4 p-4">
         <div class="w-full flex justify-center items-center">
             <div class="w-2/3">
-                <p class="text-sm text-gray-800 font-semibold">
-                    Days Remaining
-                </p>
-                <h3 class="text-3xl text-gray-800 font-semibold">
-                    {{ \Carbon\Carbon::parse($task->datetime)->diffInDays(\Carbon\Carbon::parse(\Carbon\Carbon::now())) }} days
-                </h3>
-                <p class="text-xs text-gray-500 mt-2">
-                    {{ $task->datetime }}
-                </p>
+                @if($task->datetime > \Carbon\Carbon::now())
+                    <p class="text-sm text-gray-800 font-semibold">
+                        Days Remaining
+                    </p>
+                    <h3 class="text-3xl text-gray-800 font-semibold">
+                        {{ \Carbon\Carbon::parse($task->datetime)
+                                ->diffInDays(\Carbon\Carbon::parse(\Carbon\Carbon::now())) }} days
+                    </h3>
+                    <p class="text-xs text-gray-500 mt-2">
+                        {{ $task->datetime }}
+                    </p>
+                @else
+                    <p class="text-sm text-gray-800 font-semibold">
+                        Sorry but task
+                    </p>
+                    <h3 class="text-3xl text-red-800 font-semibold">
+                        EXPIRED
+                    </h3>
+                    <p class="text-xs text-gray-500 mt-2">
+                        {{ $task->datetime }}
+                    </p>
+                @endif
             </div>
             <div class="w-1/3 h-full flex flex-col justify-center items-center">
                 @switch($task->status)

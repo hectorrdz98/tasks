@@ -12,12 +12,11 @@
         </div>
         <div class="overflow-scroll w-full p-4">
             <div class="flex w-max">
-                @include('resources/priorityTask', [
-                    'priority' => 1
-                ])
-                @include('resources/priorityTask', [
-                    'priority' => 0
-                ])
+                @foreach ($todayTasks as $key => $task)
+                    @include('resources/priorityTask', [
+                        'priority' => $key % 2 == 0 ? 1 : 0
+                    ])
+                @endforeach
             </div>
         </div>
         <div class="p-4">
@@ -25,9 +24,11 @@
                 My projects <i modal="modalNewProject" class="modal-open fas fa-plus-circle ml-2 text-3xl"></i>
             </p>
             <div class="mt-4 w-full">
-                @for ($i = 0; $i < 5; $i++)
-                    @include('resources/projectCard')
-                @endfor
+                @foreach ($projects as $project)
+                    @include('resources/projectCard', [
+                        'project' => $project
+                    ])
+                @endforeach
             </div>
         </div>
     </div>
