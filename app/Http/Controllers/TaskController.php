@@ -46,4 +46,13 @@ class TaskController extends Controller
             'taskId' => $task->id
         ]);
     }
+
+    public function updateStatus($projectID, $taskID, Request $request)
+    {
+        $project = Project::findOrFail($projectID);
+        $task = Task::findOrFail($taskID);
+        $task->status = $request->status;
+        $task->update();
+        return true;
+    }
 }

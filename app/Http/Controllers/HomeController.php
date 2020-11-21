@@ -14,7 +14,8 @@ class HomeController extends Controller
         $projects = Project::all();
 
         $today = Carbon::today();
-        $todayTasks = Task::where('datetime', 'LIKE', '%-%-'.$today->day.' %')->get();
+        $todayTasks = Task::where('datetime', 'LIKE', $today->year.'-'.$today->month.'-'.$today->day.' %')
+            ->whereIn('status', [0, 1])->get();
 
         $data = [
             'projects' => $projects,
