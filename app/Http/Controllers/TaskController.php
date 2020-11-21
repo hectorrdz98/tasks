@@ -13,7 +13,7 @@ class TaskController extends Controller
 {
     public function home($projectID, $taskID)
     {
-        $project = Project::findOrFail($projectID);
+        $project = Project::where('user', Auth::user()->id)->where('id', $projectID)->firstOrFail();
         $task = Task::findOrFail($taskID);
         $taskLabels = TaskLabel::where('project', $taskID)->get();
         $labels = Label::all();
@@ -52,7 +52,7 @@ class TaskController extends Controller
 
     public function edit($projectID, $taskID, Request $request)
     {
-        $task = Task::findOrFail($taskID);
+        $task = Task::where('user', Auth::user()->id)->where('id', $taskID)->firstOrFail();
         $task->title = $request->taskTitle;
         $task->description = $request->taskDesc;
         $task->datetime = $request->taskDate;
@@ -75,7 +75,7 @@ class TaskController extends Controller
 
     public function updateStatus($projectID, $taskID, Request $request)
     {
-        $project = Project::findOrFail($projectID);
+        $project = Project::where('user', Auth::user()->id)->where('id', $projectID)->firstOrFail();
         $task = Task::findOrFail($taskID);
         $task->status = $request->status;
         $task->update();

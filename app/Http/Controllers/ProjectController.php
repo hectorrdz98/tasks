@@ -14,7 +14,7 @@ class ProjectController extends Controller
     public function home($id)
     {
         $user = Auth::user();
-        $project = Project::findOrFail($id);
+        $project = Project::where('user', Auth::user()->id)->where('id', $id)->firstOrFail();
         $labels = Label::all();
         $tasks = [
             'toDo' => Task::where('user', $user->id)->where('project', $project->id)
@@ -45,7 +45,7 @@ class ProjectController extends Controller
 
     public function updateTitle($id, Request $request)
     {
-        $project = Project::findOrFail($id);
+        $project = Project::where('user', Auth::user()->id)->where('id', $id)->firstOrFail();
         $project->title = $request->title;
         $project->update();
         return true;
@@ -53,7 +53,7 @@ class ProjectController extends Controller
 
     public function updateColor($id, Request $request)
     {
-        $project = Project::findOrFail($id);
+        $project = Project::where('user', Auth::user()->id)->where('id', $id)->firstOrFail();
         $project->color = $request->color;
         $project->update();
         return true;
