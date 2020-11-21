@@ -33,8 +33,10 @@
                 <div class="w-full h-1 {{ $priority ? 'bg-white' : 'bg-gray-200' }} rounded mt-1">
                     <div class="h-full {{ $priority ? 'bg-yellow-300' : 'bg-green-500' }}"
                     style="width: {{
-                        100 - (\Carbon\Carbon::parse($task->datetime)
-                            ->diffInMinutes(\Carbon\Carbon::parse(\Carbon\Carbon::today())) * 100 / 1440)
+                        \Carbon\Carbon::parse($task->datetime)
+                                ->diffInMinutes(\Carbon\Carbon::parse(\Carbon\Carbon::now())) * 100 / 
+                            \Carbon\Carbon::parse($task->datetime)
+                                ->diffInMinutes(\Carbon\Carbon::parse(\Carbon\Carbon::today()))
                     }}%"></div>
                 </div>
             </div>
