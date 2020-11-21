@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Project;
 use App\Models\Task;
 use App\Models\TaskLabel;
+use App\Models\Label;
 
 class TaskController extends Controller
 {
@@ -15,10 +16,12 @@ class TaskController extends Controller
         $project = Project::findOrFail($projectID);
         $task = Task::findOrFail($taskID);
         $taskLabels = TaskLabel::where('project', $taskID)->get();
+        $labels = Label::all();
         $data = [
             'project' => $project,
             'task' => $task,
-            'taskLabels' => $taskLabels
+            'taskLabels' => $taskLabels,
+            'labels' => $labels
         ];
         return view('task', $data);
     }
@@ -44,6 +47,29 @@ class TaskController extends Controller
         return redirect()->route('task.home', [
             'id' => $projectID,
             'taskId' => $task->id
+        ]);
+    }
+
+    public function edit($projectID, $taskID, Request $request)
+    {
+        $task = Task::findOrFail($taskID);
+        $task->title = $request->taskTitle;
+        $task->description = $request->taskDesc;
+        $task->datetime = $request->taskDate;
+        $task->update();
+
+        TaskLabel::where('project', $task->id)->delete();
+
+        foreach ($request->labels as $key => $value) {
+            TaskLabel::create([
+                'project' => $taskID,
+                'label' => $key
+            ]);
+        }
+        
+        return redirect()->route('task.home', [
+            'id' => $projectID,
+            'taskId' => $taskID
         ]);
     }
 

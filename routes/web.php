@@ -30,5 +30,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('project/{id}/updateColor', [ProjectController::class, 'updateColor'])->name('project.updateColor');
     Route::post('project/{id}/create', [TaskController::class, 'create'])->name('tasks.create');
     Route::get('project/{id}/{taskId}', [TaskController::class, 'home'])->name('task.home');
+    Route::post('project/{id}/{taskId}/edit', [TaskController::class, 'edit'])->name('task.edit');
     Route::post('project/{id}/{taskId}/updateStatus', [TaskController::class, 'updateStatus'])->name('task.updateStatus');
 });
