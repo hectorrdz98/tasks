@@ -17,6 +17,7 @@ class HomeController extends Controller
         $today = Carbon::today();
         $todayTasks = Task::where('user', Auth::user()->id)
             ->where('datetime', 'LIKE', $today->year.'-'.$today->month.'-'.$today->day.' %')
+            ->where('datetime', '>', Carbon::now())
             ->whereIn('status', [0, 1])->get();
 
         $data = [
