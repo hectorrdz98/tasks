@@ -7,11 +7,14 @@
         <div class="p-4 pt-10 flex justify-center items-center">
             <div class="w-2/3 h-full flex flex-col justify-center items-start">
                 <h1 class="text-2xl text-white font-semibold overflow-y-auto leading-6">
-                    Hacer práctica #5 PL Procedures
+                    {{ $task->title }}
                 </h1>
                 <div class="flex justify-start items-center mt-2">
-                    <div id="divChangeColor" class="bg-red-600 w-5 h-5 rounded"></div>
-                    <p class="text-white ml-2">Taller de BD</p>
+                    <div id="divChangeColor" class="w-5 h-5 rounded"
+                        style="background-color: {{ $project->color }}"></div>
+                    <p class="text-white ml-2">
+                        {{ $project->title }}
+                    </p>
                 </div>
             </div>
             <div class="w-1/3 flex justify-end items-center text-white text-3xl">
@@ -26,30 +29,39 @@
                     Days Remaining
                 </p>
                 <h3 class="text-3xl text-gray-800 font-semibold">
-                    2 days
+                    {{ \Carbon\Carbon::parse($task->datetime)->diffInDays(\Carbon\Carbon::parse(\Carbon\Carbon::now())) }} days
                 </h3>
                 <p class="text-xs text-gray-500 mt-2">
-                    18/11/2020 22:58
+                    {{ $task->datetime }}
                 </p>
             </div>
             <div class="w-1/3 h-full flex flex-col justify-center items-center">
-                <div id="change-status" type="1" class="w-14 h-14 bg-red-600 rounded-xl flex justify-center items-center">
-                    <i id="change-status-icon" class="far fa-clock text-white text-2xl"></i>
-                </div>
-                <p id="change-status-text" class="text-xs text-gray-800 font-semibold mt-1">
-                    To Do
-                </p>
-                <!--
-                <div type="1" class="change-status w-14 h-14 bg-red-600 rounded-xl flex justify-center items-center">
-                    <i class="far fa-clock text-white text-2xl"></i>
-                </div>
-                <div type="2" class="change-status w-14 h-14 bg-yellow-600 rounded-xl flex justify-center items-center">
-                    <i class="fas fa-adjust text-white text-2xl"></i>
-                </div>
-                <div type="3" class="change-status w-14 h-14 bg-green-600 rounded-xl flex justify-center items-center">
-                    <i class="far fa-check-circle text-white text-2xl"></i>
-                </div>
-                -->
+                @switch($task->status)
+                    @case(0)
+                        <div id="change-status" type="1" class="w-14 h-14 bg-red-600 rounded-xl flex justify-center items-center">
+                            <i id="change-status-icon" class="far fa-clock text-white text-2xl"></i>
+                        </div>
+                        <p id="change-status-text" class="text-xs text-gray-800 font-semibold mt-1">
+                            To Do
+                        </p>
+                        @break
+                    @case(1)
+                        <div id="change-status" type="2" class="w-14 h-14 bg-yellow-600 rounded-xl flex justify-center items-center">
+                            <i id="change-status-icon" class="fas fa-adjust text-white text-2xl"></i>
+                        </div>
+                        <p id="change-status-text" class="text-xs text-gray-800 font-semibold mt-1">
+                            Doing
+                        </p>
+                        @break
+                    @case(2)
+                        <div id="change-status" type="3" class="w-14 h-14 bg-green-600 rounded-xl flex justify-center items-center">
+                            <i id="change-status-icon" class="fa-check-circle text-white text-2xl"></i>
+                        </div>
+                        <p id="change-status-text" class="text-xs text-gray-800 font-semibold mt-1">
+                            Done
+                        </p>
+                        @break
+                @endswitch
             </div>
         </div>
         <div class="mt-4">
@@ -57,7 +69,7 @@
                 Description
             </p>
             <p class="text-sm text-gray-800 leading-5">
-                This is a nice task description! This is a nice task description! This is a nice task description!This is a nice task description!This is a nice task description!This is a nice task description!This is a nice task description!This is a nice task description!This is a nice task description!This is a nice task description!This is a nice task description!
+                {{ $task->description }}
             </p>
         </div>
         <div class="mt-4">
@@ -65,11 +77,11 @@
                 Labels
             </p>
             <div class="flex justify-start items-start flex-wrap">
-                @for ($i = 0; $i < 20; $i++)
+                @foreach ($taskLabels as $taskLabel)
                     <div class="h-8 w-8 my-1 flex justify-center items-center bg-black bg-opacity-10 rounded-xl mr-2">
-                        <i class="text-sm fas fa-plane-departure text-gray-800"></i>
+                        <i class="text-sm {{ \App\Models\Label::find($taskLabel->label)->value }} text-gray-800"></i>
                     </div>
-                @endfor
+                @endforeach
             </div>
         </div>
     </div>

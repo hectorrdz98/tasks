@@ -52,3 +52,9 @@ $('.task-label-input').change(function () {
     $(this).next().toggleClass("text-white");
     $(this).next().toggleClass("bg-opacity-100");
 });
+
+// ALERT EVENTS
+
+$(".close-alert").click(function () {
+    $(this).parent().parent().remove();
+});

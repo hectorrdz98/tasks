@@ -7,7 +7,7 @@
                 Hello,
             </h1>
             <h1 class="text-2xl text-gray-800 font-semibold">
-                Héctor Rodríguez
+                {{ Auth::user()->name }}
             </h1>
         </div>
         <div class="overflow-scroll w-full p-4">

@@ -23,12 +23,12 @@
                     About
                 </p>
             </div>
-            <div class="flex justify-start items-center w-full px-4 py-2">
+            <a href="{{ route('logout') }}" class="flex justify-start items-center w-full px-4 py-2">
                 <i class="fas fa-sign-out-alt text-base text-gray-600"></i>
                 <p class="text-base text-gray-600 ml-4 font-semibold">
                     Logout
                 </p>
-            </div>
+            </a>
         </div>
     </div>
     <div id="sideMenuBlack" class="fixed bg-black w-full h-full bg-opacity-60 transition-all duration-500"></div>

@@ -6,12 +6,12 @@
             <div class="w-2/3 h-full flex flex-col justify-center items-start">
                 <h1 class="modal-open text-3xl text-white font-semibold overflow-y-auto"
                     modal="modalChangeProjectTitle">
-                    Taller de BD
+                    {{ $project->title }}
                 </h1>
                 <div class="flex justify-start items-center">
-                    <div id="divChangeColor" class="modal-open bg-red-600 w-5 h-5 rounded"
-                        modal="modalChangeProjectColor"></div>
-                    <p class="text-white ml-2">2 / 40</p>
+                    <div id="divChangeColor" class="modal-open w-5 h-5 rounded"
+                        modal="modalChangeProjectColor" style="background-color: {{ $project->color }}"></div>
+                    <p class="text-white ml-2">{{ $tasks['done']->count() }} / {{ $tasks['toDo']->count() + $tasks['doing']->count() + $tasks['done']->count() }}</p>
                 </div>
             </div>
             <div class="w-1/3 flex justify-end items-center text-white text-3xl">
@@ -22,34 +22,40 @@
             <div id="panel-to-do">
                 <p class="text-lg h-10 text-gray-800 font-semibold flex items-center justify-start">
                     To Do 
-                    <span class="ml-2 text-gray-400">(30)<span>
+                    <span class="ml-2 text-gray-400">({{ $tasks['toDo']->count() }})<span>
                 </p>
                 <div class="mt-4 w-full overflow-y-auto" style="height: calc(100% - 1rem - 2.5rem - 1rem - 10rem - 3.5rem - 3rem);">
-                    @for ($i = 0; $i < 30; $i++)
-                        @include('resources/taskCard')
-                    @endfor
+                    @foreach ($tasks['toDo'] as $task)
+                        @include('resources/taskCard', [
+                            'task' => $task
+                        ])
+                    @endforeach
                 </div>
             </div>
             <div id="panel-doing" class="hidden">
                 <p class="text-lg h-10 text-gray-800 font-semibold flex items-center justify-start">
                     Doing
-                    <span class="ml-2 text-gray-400">(8)<span>
+                    <span class="ml-2 text-gray-400">({{ $tasks['doing']->count() }})<span>
                 </p>
                 <div class="mt-4 w-full overflow-y-auto" style="height: calc(100% - 1rem - 2.5rem - 1rem - 10rem - 3.5rem - 3rem);">
-                    @for ($i = 0; $i < 8; $i++)
-                        @include('resources/taskCard')
-                    @endfor
+                    @foreach ($tasks['doing'] as $task)
+                        @include('resources/taskCard', [
+                            'task' => $task
+                        ])
+                    @endforeach
                 </div>
             </div>
             <div id="panel-done" class="hidden">
                 <p class="text-lg h-10 text-gray-800 font-semibold flex items-center justify-start">
                     Done
-                    <span class="ml-2 text-gray-400">(2)<span>
+                    <span class="ml-2 text-gray-400">({{ $tasks['done']->count() }})<span>
                 </p>
                 <div class="mt-4 w-full overflow-y-auto" style="height: calc(100% - 1rem - 2.5rem - 1rem - 10rem - 3.5rem - 3rem);">
-                    @for ($i = 0; $i < 2; $i++)
-                        @include('resources/taskCard')
-                    @endfor
+                    @foreach ($tasks['done'] as $task)
+                        @include('resources/taskCard', [
+                            'task' => $task
+                        ])
+                    @endforeach
                 </div>
             </div>
             <div class="w-full h-10 mt-2 flex justify-center items-center">
