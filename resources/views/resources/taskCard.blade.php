@@ -1,6 +1,8 @@
 <a href="{{ route('task.home', [$project->id, $task->id]) }}" class="w-full rounded flex justify-start items-center">
     <div class="w-2/3 flex justify-start items-center">
-        @if (\Carbon\Carbon::parse($task->datetime)->diffInDays(\Carbon\Carbon::parse(\Carbon\Carbon::now())) == 0)
+        @if (\Carbon\Carbon::now() > $task->datetime)
+            <div class="w-4 h-4 bg-gray-600 rounded-full"></div>
+        @elseif (\Carbon\Carbon::parse($task->datetime)->diffInDays(\Carbon\Carbon::parse(\Carbon\Carbon::now())) == 0)
             <div class="w-4 h-4 bg-red-600 rounded-full"></div>
         @elseif (\Carbon\Carbon::parse($task->datetime)->diffInDays(\Carbon\Carbon::parse(\Carbon\Carbon::now())) == 1)
             <div class="w-4 h-4 bg-yellow-600 rounded-full"></div>
