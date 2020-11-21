@@ -22,7 +22,7 @@
         </div>
         <div class="p-4">
             <p class="text-lg text-gray-400 font-semibold flex items-center justify-start">
-                My projects <i class="fas fa-plus-circle ml-2 text-3xl"></i>
+                My projects <i modal="modalNewProject" class="modal-open fas fa-plus-circle ml-2 text-3xl"></i>
             </p>
             <div class="mt-4 w-full">
                 @for ($i = 0; $i < 5; $i++)
@@ -31,4 +31,7 @@
             </div>
         </div>
     </div>
+    @include('modals/newProject', [
+        'id' => 'modalNewProject'
+    ])
 @endsection

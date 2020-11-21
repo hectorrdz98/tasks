@@ -15,12 +15,12 @@
                 </div>
             </div>
             <div class="w-1/3 flex justify-end items-center text-white text-3xl">
-                <i class="modal-open fas fa-edit mx-4" modal="modalNewTask"></i>
+                <i class="modal-open fas fa-edit mx-4" modal="modalEditTask"></i>
             </div>
         </div>
     </div>
     <div class="mt-4 p-4">
-        <div class="w-full flex justify-center items-start">
+        <div class="w-full flex justify-center items-center">
             <div class="w-2/3">
                 <p class="text-sm text-gray-800 font-semibold">
                     Days Remaining
@@ -32,18 +32,21 @@
                     18/11/2020 22:58
                 </p>
             </div>
-            <div class="w-1/3 h-full flex justify-center items-center p-4">
-                <div class="w-14 h-14 bg-red-600 rounded-xl flex justify-center items-center">
-                    <i class="far fa-clock text-white text-2xl"></i>
+            <div class="w-1/3 h-full flex flex-col justify-center items-center">
+                <div id="change-status" type="1" class="w-14 h-14 bg-red-600 rounded-xl flex justify-center items-center">
+                    <i id="change-status-icon" class="far fa-clock text-white text-2xl"></i>
                 </div>
+                <p id="change-status-text" class="text-xs text-gray-800 font-semibold mt-1">
+                    To Do
+                </p>
                 <!--
-                <div class="w-14 h-14 bg-red-600 rounded-xl flex justify-center items-center">
+                <div type="1" class="change-status w-14 h-14 bg-red-600 rounded-xl flex justify-center items-center">
                     <i class="far fa-clock text-white text-2xl"></i>
                 </div>
-                <div class="w-14 h-14 bg-yellow-600 rounded-xl flex justify-center items-center">
+                <div type="2" class="change-status w-14 h-14 bg-yellow-600 rounded-xl flex justify-center items-center">
                     <i class="fas fa-adjust text-white text-2xl"></i>
                 </div>
-                <div class="w-14 h-14 bg-green-600 rounded-xl flex justify-center items-center">
+                <div type="3" class="change-status w-14 h-14 bg-green-600 rounded-xl flex justify-center items-center">
                     <i class="far fa-check-circle text-white text-2xl"></i>
                 </div>
                 -->
@@ -70,9 +73,44 @@
             </div>
         </div>
     </div>
+    @include('modals/editTask', [
+        'id' => 'modalEditTask'
+    ])
 @endsection
 @section('scripts')
 <script>
-    
+    $("#change-status").click(function () {
+        let type = parseInt($(this).attr("type"));
+        switch (type) {
+            case 1:
+                $(this).attr("type", "2");
+                $(this).removeClass("bg-red-600");
+                $(this).addClass("bg-yellow-600");
+                $("#change-status-icon").removeClass("fa-clock");
+                $("#change-status-icon").addClass("fa-adjust");
+                $("#change-status-icon").removeClass("far");
+                $("#change-status-icon").addClass("fas");
+                $("#change-status-text").text("Doing");
+                break;
+            case 2:
+                $(this).attr("type", "3");
+                $(this).removeClass("bg-yellow-600");
+                $(this).addClass("bg-green-600");
+                $("#change-status-icon").removeClass("fa-adjust");
+                $("#change-status-icon").addClass("fa-check-circle");
+                $("#change-status-icon").removeClass("fas");
+                $("#change-status-icon").addClass("far");
+                $("#change-status-text").text("Done");
+                break;
+            case 3:
+                $(this).attr("type", "1");
+                $(this).removeClass("bg-green-600");
+                $(this).addClass("bg-red-600");
+                $("#change-status-icon").removeClass("fa-check-circle");
+                $("#change-status-icon").addClass("fa-clock");
+                $("#change-status-text").text("To Do");
+                break;
+        }
+    });
 </script>
 @endsection
