@@ -1,6 +1,8 @@
 @extends('layouts.master')
 @section('content')
-    @include('layouts.navbar')
+    @include('layouts.navbar', [
+        'delete' => route('project.delete', ['id' => $project->id])
+    ])
     <div class="bg-blue-500 h-max min-h-full pt-14">
         <div class="p-4 h-40 flex justify-center items-center">
             <div class="w-2/3 h-full flex flex-col justify-center items-start">

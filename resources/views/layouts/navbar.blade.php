@@ -44,8 +44,10 @@
                 <div id="sideMenuBarSemi" class="w-1/2 h-1 bg-gray-800 rounded transition-all duration-200"></div>
             </div>
         @endisset
-        <div>
-            <i class="text-xl fas fa-bell text-gray-400"></i>
-        </div>
+        @isset($delete)
+            <a href="{{ $delete }}">
+                <i class="text-xl fas fa-trash text-gray-400"></i>
+            </a>
+        @endif
     </div>
 </nav>

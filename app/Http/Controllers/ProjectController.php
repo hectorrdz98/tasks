@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Project;
 use App\Models\Task;
+use App\Models\TaskLabel;
 use App\Models\Label;
 
 class ProjectController extends Controller
@@ -56,5 +57,17 @@ class ProjectController extends Controller
         $project->color = $request->color;
         $project->update();
         return true;
+    }
+
+    public function delete($id)
+    {
+        $project = Project::where('id', $id)->where('user', Auth::user()->id)->firstOrFail();
+        $tasks = Task::where('project', $project->id)->get();
+        foreach ($tasks as $key => $task) {
+            TaskLabel::where('project', $task->id)->delete();
+            $task->delete();
+        }
+        $project->delete();
+        return redirect()->route('home');
     }
 }

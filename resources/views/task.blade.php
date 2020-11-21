@@ -1,7 +1,8 @@
 @extends('layouts.master')
 @section('content')
     @include('layouts.navbar', [
-        'return' => route('project.home', $project->id)
+        'return' => route('project.home', $project->id),
+        'delete' => route('task.delete', ['id' => $project->id, 'taskId' => $task->id])
     ])
     <div class="bg-blue-500 pt-14 rounded-b-3xl shadow-2xl">
         <div class="p-4 pt-10 flex justify-center items-center">

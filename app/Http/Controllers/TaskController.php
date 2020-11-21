@@ -81,4 +81,13 @@ class TaskController extends Controller
         $task->update();
         return true;
     }
+
+    public function delete($projectID, $taskID)
+    {
+        $project = Project::where('id', $projectID)->where('user', Auth::user()->id)->firstOrFail();
+        $task = Task::findOrFail($taskID);
+        TaskLabel::where('project', $task->id)->delete();
+        $task->delete();
+        return redirect()->route('project.home', ['id' => $projectID]);
+    }
 }
